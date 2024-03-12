@@ -19,17 +19,17 @@ variable "instances_coolify_controler" {
 
 variable "server_type_coolify_controler" {
   type        = string
-  description = "Server type to use for deployment controler node"
+  description = "Server type to use for deployment controler worker"
   default     = "cx11"
 }
 
-variable "server_type_coolify_node" {
+variable "server_type_coolify_worker" {
   type        = string
   description = "Server type to use for deployment"
   default     = "cx21"
 }
 
-variable "instances_coolify_node" {
+variable "instances_coolify_worker" {
   type        = string
   description = "Number of instances to create"
   default     = "2"
@@ -43,6 +43,6 @@ variable "os_type" {
 
 variable "public_net" {
   type        = bool
-  description = "Public network enabled or desabled for all servers besides master_node and backup"
+  description = "Public network enabled or desabled for all servers besides master_worker and backup"
   default     = true
 }

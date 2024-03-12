@@ -1,0 +1,5 @@
+skip_list:
+  - yaml[trailing-spaces]
+  - yaml[indentation]
+  - yaml[new-line-at-end-of-file]
+  - yaml[brackets]

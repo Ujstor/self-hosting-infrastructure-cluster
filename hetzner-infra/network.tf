@@ -18,12 +18,12 @@ resource "hcloud_server_network" "subnet_controler" {
   count     = var.instances_coolify_controler
   server_id = hcloud_server.coolify_controler[count.index].id
   subnet_id = hcloud_network_subnet.deployment_subnet.id
-  ip        = local.available_ip_deploymet[count.index + var.instances_coolify_node]
+  ip        = local.available_ip_deploymet[count.index + var.instances_coolify_worker]
 }
 
-resource "hcloud_server_network" "subnet_node" {
-  count     = var.instances_coolify_node
-  server_id = hcloud_server.coolify_node[count.index].id
+resource "hcloud_server_network" "subnet_worker" {
+  count     = var.instances_coolify_worker
+  server_id = hcloud_server.coolify_worker[count.index].id
   subnet_id = hcloud_network_subnet.deployment_subnet.id
   ip        = local.available_ip_deploymet[count.index]
 }

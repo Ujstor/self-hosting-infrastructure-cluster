@@ -13,7 +13,7 @@ jobs:
 
       - name: Install Ansible Collection
         run: |
-          ansible-galaxy install -r ansible/requirements.yml
+          ansible-galaxy collection install -r ansible/requirements.yml
  
       - name: Run ansible-lint
         uses: ansible/ansible-lint@v24.2.0

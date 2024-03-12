@@ -1,0 +1,6 @@
+[sshd]
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/fail2ban.log
+banaction = iptables-multiport

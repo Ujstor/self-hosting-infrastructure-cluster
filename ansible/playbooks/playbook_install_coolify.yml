@@ -1,0 +1,47 @@
+---
+- name: Install Coolify on controler host
+  hosts: coolify-controler
+  become: true
+  become_user: root
+  roles:
+    - role: common
+  tasks:
+    - name: Allow incoming UI Port
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+      loop:
+        - 6001
+        - 8000
+        - 80
+        - 443
+
+    - name: Download Coolify installation script
+      ansible.builtin.get_url:
+        url: "https://cdn.coollabs.io/coolify/install.sh"
+        dest: "~/install.sh"
+        mode: "0770"
+
+    - name: Execute Coolify installation script
+      ansible.builtin.command: "~/install.sh"
+      register: install_result
+      changed_when: install_result.rc != 0
+
+    - name: Debug installation script output
+      ansible.builtin.debug:
+        var: install_result.stdout_lines
+
+- name: Worker configuration
+  hosts: coolify-worker
+  become: true
+  become_user: root
+  roles:
+    - role: common
+
+  tasks:
+    - name: Allow incoming traffic on specified ports
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+      loop:
+        - 6001

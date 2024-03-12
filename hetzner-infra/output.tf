@@ -3,8 +3,8 @@ output "server_ips" {
     coolify_controler = {
       for idx, instance in hcloud_server.coolify_controler : instance.name => instance.ipv4_address
     },
-    coolify_node = {
-      for idx, instance in hcloud_server.coolify_node : instance.name => instance.ipv4_address
+    coolify_worker = {
+      for idx, instance in hcloud_server.coolify_worker : instance.name => instance.ipv4_address
     },
   }
 }
@@ -14,8 +14,8 @@ output "server_status" {
     coolify_controler = {
       for instance in hcloud_server.coolify_controler : instance.name => instance.status
     },
-    coolify_node = {
-      for instance in hcloud_server.coolify_node : instance.name => instance.status
+    coolify_worker = {
+      for instance in hcloud_server.coolify_worker : instance.name => instance.status
     },
   }
 }

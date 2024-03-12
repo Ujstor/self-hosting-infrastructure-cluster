@@ -1,0 +1,62 @@
+---
+- name: Update package lists
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Upgrade all packages
+  ansible.builtin.apt:
+    upgrade: true
+
+- name: Install public AuthorizedKeysFile
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '~/.ssh/self_hosted_hetzner_key.pub') }}"
+
+- name: Install required packages
+  ansible.builtin.package:
+    name: 
+      - ufw
+      - fail2ban
+    state: present
+
+- name: Allow everything and enable UFW
+  community.general.ufw:
+    state: enabled
+    policy: allow
+
+
+- name: Allow incoming traffic on specified ports
+  community.general.ufw:
+    rule: allow
+    port: "{{ item }}"
+  loop:
+    - 22
+
+- name: Configure Fail2Ban
+  ansible.builtin.template:
+    src: jail.local.j2
+    dest: /etc/fail2ban/jail.local
+    mode: preserve
+
+- name: Restart fail2ban
+  ansible.builtin.service:
+    name: fail2ban
+    state: restarted
+
+- name: SSH Hardening for root user
+  ansible.builtin.blockinfile:
+    path: /etc/ssh/sshd_config
+    block: |
+      PermitRootLogin yes
+      PasswordAuthentication no
+      X11Forwarding no
+      MaxAuthTries 2
+      AllowTcpForwarding no
+      AllowAgentForwarding no
+      AuthorizedKeysFile .ssh/authorized_keys
+
+- name: Restart sshd
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
