@@ -1,0 +1,19 @@
+name: ansible-lint
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  build:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Ansible Collection
+        run: |
+          ansible-galaxy install -r ansible/requirements.yml
+ 
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@v24.2.0

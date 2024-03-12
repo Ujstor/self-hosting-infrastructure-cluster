@@ -1,0 +1,10 @@
+hcloud_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+location_list                   = ["fsn1", "nbg1", "hel1"]
+instances_coolify_node          = "0"
+instances_coolify_controler     = "0"
+server_type_coolify_node        = "cx21"
+server_type_coolify_controler   = "cx11"
+os_type                         = "debian-12"
+public_net                      = true
+
