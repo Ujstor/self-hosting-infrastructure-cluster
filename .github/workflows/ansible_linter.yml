@@ -11,9 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: install latest Ansible and linter
+        run: |
+          pip3 install ansible
+          pip3 install ansible-lint
+
       - name: Install Ansible Collection
         run: |
           ansible-galaxy collection install -r ansible/requirements.yml
  
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@v24.2.0
+        run: ansible-lint
