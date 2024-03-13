@@ -45,4 +45,3 @@ resource "hcloud_server" "coolify_worker" {
     hcloud_network_subnet.deployment_subnet
   ]
 }
-
