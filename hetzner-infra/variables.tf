@@ -43,6 +43,7 @@ variable "os_type" {
 
 variable "public_net" {
   type        = bool
-  description = "Public network enabled or desabled for all servers besides master_worker and backup"
+  description = "Public network enabled or desabled for all servers besides controler"
   default     = true
 }
+

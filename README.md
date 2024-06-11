@@ -2,7 +2,10 @@
 
 Infra for utilizing Hetzner low-cost VPS and Docker containers, wrapped in [Coolify](https://coolify.io) as an all-in-one PaaS, to self-host your own applications, databases, or services.
 
-![infra](public/01_infra-diagram.png)
+<p align="center">
+  <img src="public/01_infra-diagram.png" width="600" alt="Infrastructure Diagram">
+</p>
+
 
 ## Prerequisites
 
@@ -47,7 +50,7 @@ Initialize Terraform and apply the configuration:
 cd hetzner-infra
 terraform init --upgrade
 terraform validate
-terraform apply -auto-approve
+terraform apply
 ```
 
 ### 4. Define hosts and run ansible playbook
@@ -103,5 +106,5 @@ ssh root@<server-ip> -i ~/.ssh/self_hosted_hetzner_key.pem
 To destroy the infrastructure run the following command:
 
 ```shell
-terraform destroy -auto-approve
+terraform destroy
 ```

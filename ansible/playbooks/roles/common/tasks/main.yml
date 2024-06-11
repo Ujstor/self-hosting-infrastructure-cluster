@@ -44,11 +44,17 @@
     name: fail2ban
     state: restarted
 
+- name: Ensure no conflicting PermitRootLogin in sshd_config
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    state: absent
+
 - name: SSH Hardening for root user
   ansible.builtin.blockinfile:
     path: /etc/ssh/sshd_config
     block: |
-      PermitRootLogin yes
+      PermitRootLogin prohibit-password
       PasswordAuthentication no
       X11Forwarding no
       MaxAuthTries 2
