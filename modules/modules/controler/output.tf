@@ -19,8 +19,9 @@ output "controler_info" {
   value = {
     for key, _ in var.controler_config :
     key => {
-      ip     = hcloud_server.coolify_controler[key].ipv4_address
-      status = hcloud_server.coolify_controler[key].status
+      ip           = hcloud_server.coolify_controler[key].ipv4_address
+      status       = hcloud_server.coolify_controler[key].status
+      controler_id = hcloud_server.coolify_controler[key].id
     }
   }
 }
