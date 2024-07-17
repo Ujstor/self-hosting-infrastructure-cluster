@@ -36,8 +36,8 @@ hcloud_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 location_list                 = ["fsn1", "nbg1", "hel1"]
 instances_coolify_controler   = "1"
 instances_coolify_worker      = "2"
-server_type_coolify_controler = "cx21"
-server_type_coolify_worker    = "cx21"
+server_type_coolify_controler = "cx22"
+server_type_coolify_worker    = "cx22"
 os_type                       = "debian-12"
 public_net                    = true
 ```
