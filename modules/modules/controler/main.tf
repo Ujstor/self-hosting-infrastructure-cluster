@@ -10,3 +10,12 @@ resource "hcloud_server" "coolify_controler" {
     type = each.value.labels
   }
 }
+
+
+resource "hcloud_server_network" "subnet_controler" {
+  for_each = var.use_network ? var.controler_config : {}
+
+  server_id = hcloud_server.coolify_controler[each.key].id
+  subnet_id = each.value.subnet_id
+  ip        = each.value.subnet_ip
+}

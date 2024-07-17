@@ -6,6 +6,8 @@ variable "worker_config" {
     labels       = string
     ipv4_enabled = bool
     ipv6_enabled = bool
+    subnet_id    = optional(string)
+    subnet_ip    = optional(string)
   }))
 }
 
@@ -18,4 +20,10 @@ variable "os_type" {
 variable "hcloud_ssh_key_id" {
   description = "ID of the SSH key created and used for Hetzner cloud and serves"
   type        = list(string)
+}
+
+variable "use_network" {
+  description = "Use VPC and subnets"
+  type        = bool
+  default     = false
 }

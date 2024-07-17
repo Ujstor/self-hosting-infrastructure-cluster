@@ -13,10 +13,15 @@ module "controler_test" {
       location    = "fsn1"
       server_type = "cx22"
       labels      = "controler"
+      subnet_id   = module.vpc_subnets.subnet_id["subnet-1"].subnet_id
+      subnet_ip   = "10.0.1.1"
+
     }
   }
 
   hcloud_ssh_key_id = [module.ssh_key_test.hcloud_ssh_key_id]
+
+  use_network = true
 
   depends_on = [module.ssh_key_test]
 }
@@ -31,6 +36,8 @@ module "workers_test" {
       labels       = "worker"
       ipv4_enabled = true
       ipv6_enabled = false
+      subnet_id    = module.vpc_subnets.subnet_id["subnet-2"].subnet_id
+      subnet_ip    = "10.0.2.1"
     }
     worker-2 = {
       location     = "nbg1"
@@ -38,6 +45,8 @@ module "workers_test" {
       labels       = "worker"
       ipv4_enabled = true
       ipv6_enabled = false
+      subnet_id    = module.vpc_subnets.subnet_id["subnet-2"].subnet_id
+      subnet_ip    = "10.0.2.2"
     }
     worker-3 = {
       location     = "hel1"
@@ -45,6 +54,8 @@ module "workers_test" {
       labels       = "worker"
       ipv4_enabled = true
       ipv6_enabled = false
+      subnet_id    = module.vpc_subnets.subnet_id["subnet-2"].subnet_id
+      subnet_ip    = "10.0.2.3"
     }
   }
 
@@ -52,11 +63,13 @@ module "workers_test" {
 
   hcloud_ssh_key_id = [module.ssh_key_test.hcloud_ssh_key_id]
 
+  use_network = true
+
   depends_on = [module.ssh_key_test]
 }
 
 module "vpc_subnets" {
-  source = "../../modules/network/"
+  source = "../../modules/network/vpc_subnet"
 
   vpc_config = {
     vpc_name     = "coolify"
