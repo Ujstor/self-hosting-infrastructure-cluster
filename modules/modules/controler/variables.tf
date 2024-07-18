@@ -1,13 +1,12 @@
 variable "controler_config" {
   description = "Config for each created controler server"
   type = map(object({
-    location    = string
-    server_type = string
-    labels      = string
-    subnet_id   = optional(string)
-    subnet_ip   = optional(string)
-
-
+    location     = string
+    server_type  = string
+    labels       = string
+    subnet_id    = optional(string)
+    subnet_ip    = optional(string)
+    firewall_ids = optional(list(string))
   }))
 }
 
@@ -26,4 +25,10 @@ variable "use_network" {
   description = "Use VPC and subnets"
   type        = bool
   default     = false
+}
+
+variable "firewall_ids" {
+  description = "Firewall IDs to pass to the server"
+  type        = list(string)
+  default     = null
 }

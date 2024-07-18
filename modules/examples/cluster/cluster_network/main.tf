@@ -1,5 +1,5 @@
 module "network_config" {
-  source = "../../modules/network/vpc_subnet/"
+  source = "../../../modules/network/vpc_subnet/"
 
   vpc_config = {
     vpc_name     = "coolify"
@@ -19,21 +19,8 @@ module "network_config" {
   network_zone = "eu-central"
 }
 
-resource "cloudflare_record" "controller-record" {
-  zone_id = var.cloudflare_zone_id
-  name    = "coolify-ui"
-  value   = module.cluster.controller_status["controler-1"].ip
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
-
 module "cluster" {
-  source = "../../modules/cluster/"
-
-  ssh_key_name = "coolify_cluster_hetzner_key"
-  ssh_key_path = ".ssh"
-
+  source = "../../../modules/cluster/"
 
   controller_config = {
     controler-1 = {
