@@ -11,7 +11,7 @@
   ansible.posix.authorized_key:
     user: root
     state: present
-    key: "{{ lookup('file', '~/.ssh/self_hosted_hetzner_key.pub') }}"
+    key: "{{ lookup('file', '~/.ssh/coolify_cluster_hetzner_key.pub') }}"
 
 - name: Install required packages
   ansible.builtin.package:
