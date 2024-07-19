@@ -96,6 +96,12 @@ module "firewall" {
           protocol  = "tcp"
         },
         {
+          destination_ips = ["0.0.0.0/0"]
+          direction       = "out"
+          port            = "22"
+          protocol        = "tcp"
+        },
+        {
           direction = "in"
           port      = "80"
           protocol  = "tcp"
@@ -132,6 +138,12 @@ module "firewall" {
           direction = "in"
           port      = "8000"
           protocol  = "tcp"
+        },
+        {
+          destination_ips = ["0.0.0.0/0"]
+          direction       = "out"
+          port            = "8000"
+          protocol        = "tcp"
         }
       ]
     }

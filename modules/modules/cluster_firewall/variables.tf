@@ -81,6 +81,12 @@ variable "firewall_config" {
           protocol  = "tcp"
         },
         {
+          destination_ips = ["0.0.0.0/0"]
+          direction       = "out"
+          port            = "22"
+          protocol        = "tcp"
+        },
+        {
           direction = "in"
           port      = "80"
           protocol  = "tcp"
@@ -117,6 +123,12 @@ variable "firewall_config" {
           direction = "in"
           port      = "8000"
           protocol  = "tcp"
+        },
+        {
+          destination_ips = ["0.0.0.0/0"]
+          direction       = "out"
+          port            = "8000"
+          protocol        = "tcp"
         }
       ]
     }

@@ -5,6 +5,7 @@ Create new project in Hetzner [console](https://console.hetzner.cloud/projects)
 ## 2. Configure infrastructure
 
 Choose how many servers you want to have in your cluster, the network topology, the types of servers, domains etc... 
+
 Example configurations are in the /modules/examples folder, and more detailed usage instructions are in the documentation
 
 ## 3. Initialize and Apply Terraform

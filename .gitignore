@@ -39,3 +39,4 @@ terraform.rc
 
 logs
 .ssh/
+dev/

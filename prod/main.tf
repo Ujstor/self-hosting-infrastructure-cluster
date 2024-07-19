@@ -5,13 +5,12 @@ module "cluster" {
   ssh_key_path = ".ssh"
 
   controller_config = {
-    controller-1 = {
-      location     = "fsn1"
-      server_type  = "cx22"
-      labels       = "controller"
-      subnet_id    = module.network_config.subnet_id.subnet-1.subnet_id
-      subnet_ip    = "10.0.1.1"
-      firewall_ids = [module.firewall.firewall_ids.coolify.id]
+    controller-2 = {
+      location    = "fsn1"
+      server_type = "cx22"
+      labels      = "controller"
+      subnet_id   = module.network_config.subnet_id.subnet-1.subnet_id
+      subnet_ip   = "10.0.1.2"
     }
   }
 
@@ -24,7 +23,6 @@ module "cluster" {
       ipv6_enabled = false
       subnet_id    = module.network_config.subnet_id.subnet-2.subnet_id
       subnet_ip    = "10.0.2.1"
-      firewall_ids = [module.firewall.firewall_ids.coolify.id]
     }
     worker-2 = {
       location     = "nbg1"
@@ -34,7 +32,6 @@ module "cluster" {
       ipv6_enabled = false
       subnet_id    = module.network_config.subnet_id.subnet-2.subnet_id
       subnet_ip    = "10.0.2.2"
-      firewall_ids = [module.firewall.firewall_ids.coolify.id]
     }
     worker-3 = {
       location     = "hel1"
@@ -44,7 +41,6 @@ module "cluster" {
       ipv6_enabled = false
       subnet_id    = module.network_config.subnet_id.subnet-2.subnet_id
       subnet_ip    = "10.0.2.3"
-      firewall_ids = [module.firewall.firewall_ids.coolify.id]
     }
   }
 }
@@ -55,21 +51,20 @@ module "cloudflare_record" {
   cloudflare_record = {
     cl-ui = {
       zone_id = var.cloudflare_zone_id
-      name    = "coolify-ui"
+      name    = "uitest"
       value   = module.cluster.controller_status.controller-1.ip
       type    = "A"
-      ttl     = 1
-      proxied = true
+      ttl     = 3600
+      proxied = false
     }
     app-foo = {
       zone_id = var.cloudflare_zone_id
-      name    = "coolify-ui"
+      name    = "app-foo"
       value   = module.cluster.worker_status.worker-1.ip
       type    = "A"
-      ttl     = 1
-      proxied = true
+      ttl     = 3600
+      proxied = false
     }
-
   }
 }
 
@@ -93,63 +88,3 @@ module "network_config" {
   network_type = "cloud"
   network_zone = "eu-central"
 }
-
-module "firewall" {
-  source = "../modules/modules/network/firewall"
-
-  firewalls = {
-    coolify = {
-      labels = {
-        type = "firewall-1"
-      }
-      name = "firewall-coolify"
-
-      rules = [
-        {
-          direction = "in"
-          port      = "22"
-          protocol  = "tcp"
-        },
-        {
-          direction = "in"
-          port      = "80"
-          protocol  = "tcp"
-        },
-        {
-          destination_ips = ["0.0.0.0/0"]
-          direction       = "out"
-          port            = "80"
-          protocol        = "tcp"
-        },
-        {
-          direction = "in"
-          port      = "443"
-          protocol  = "tcp"
-        },
-        {
-          destination_ips = ["0.0.0.0/0"]
-          direction       = "out"
-          port            = "443"
-          protocol        = "tcp"
-        },
-        {
-          direction = "in"
-          port      = "6001"
-          protocol  = "tcp"
-        },
-        {
-          destination_ips = ["0.0.0.0/0"]
-          direction       = "out"
-          port            = "6001"
-          protocol        = "tcp"
-        },
-        {
-          direction = "in"
-          port      = "8000"
-          protocol  = "tcp"
-        }
-      ]
-    }
-  }
-}
-
