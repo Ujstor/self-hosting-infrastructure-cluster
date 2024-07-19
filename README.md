@@ -21,5 +21,4 @@ For example, in earlier iterations, you might not have known which server would 
 Old code is available in the [old_config branch](https://github.com/Ujstor/self-hosting-infrastructure-cluster/tree/old_config)
 
 ***Check [docs](ujstor.github.io/self-hosting-infrastructure-cluster) for more detailed info.*** 
-
 Docs are work in progress.
