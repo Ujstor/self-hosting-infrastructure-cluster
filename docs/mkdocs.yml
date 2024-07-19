@@ -1,0 +1,37 @@
+### Site metadata ###
+
+site_name: K8s Infra
+site_description: Docs
+# site_url: http:/ujstor.github.io/k8s-infra
+
+repo_url: https://github.com/ujstor/k8s-infra
+edit_uri: edit/main/docs/docs
+
+### Build settings ###
+
+theme:
+  name: material
+  custom_dir: custom_theme/
+  theme:
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.footer
+    - toc.flow
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Quick Start: quick_start.md
+extra:
+    generator: false
+
+copyright: Copyright &copy; 2024 Ujstor

@@ -1,0 +1,34 @@
+name: tfsec
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  tflint:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/setup-go@v5
+      name: Setup Go
+      with:
+        go-version: '1.22.2'
+
+    - uses: actions/checkout@v4
+      name: Checkout source code
+
+    - name: Install dependencies
+      run: | 
+        go install github.com/aquasecurity/tfsec/cmd/tfsec@latest
+
+    - name: Run tfsec
+      run: tfsec --soft-fail --format sarif --out tfsec.sarif
+
+    - uses: github/codeql-action/upload-sarif@v3
+      if: github.ref == 'refs/heads/master'
+      with:
+        sarif_file: tfsec.sarif
