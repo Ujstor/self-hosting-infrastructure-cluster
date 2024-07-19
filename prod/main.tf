@@ -1,5 +1,5 @@
 module "cluster" {
-  source = "../modules/modules/cluster/"
+  source = "github.com/Ujstor/self-hosting-infrastructure-cluster//modules/modules/cluster?ref=v0.0.1"
 
   ssh_key_name = "coolify_cluster_prod_key"
   ssh_key_path = ".ssh"
@@ -46,7 +46,7 @@ module "cluster" {
 }
 
 module "cloudflare_record" {
-  source = "../modules/modules/network/cloudflare_record/"
+  source = "github.com/Ujstor/self-hosting-infrastructure-cluster//modules/modules/network/cloudflare_record?ref=v0.0.1"
 
   cloudflare_record = {
     cl-ui = {
@@ -69,7 +69,7 @@ module "cloudflare_record" {
 }
 
 module "network_config" {
-  source = "../modules/modules/network/vpc_subnet/"
+  source = "github.com/Ujstor/self-hosting-infrastructure-cluster//modules/modules/network/vpc_subnet?ref=v0.0.1"
 
   vpc_config = {
     vpc_name     = "coolify"

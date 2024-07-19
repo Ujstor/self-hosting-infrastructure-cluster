@@ -14,9 +14,11 @@ Before you begin, ensure you have the following:
 
 This second iteration offers more granular control over the infrastructure that is created.
 It abstracts components into modules that can be reused and imported as source.
+
 Benefits include the ability to change infrastructure components in place, targeting specific components.
-For example, in earlier iterations, you might not have known which server would be destroyed
+For example, in earlier iterations, you might not have known which server would be destroyed.
 
 Old code is available in the [old_config branch](https://github.com/Ujstor/self-hosting-infrastructure-cluster/tree/old_config)
 
-***Check [docs](ujstor.github.io/self-hosting-infrastructure-cluster)for more detailed info.*** 
+***Check [docs](ujstor.github.io/self-hosting-infrastructure-cluster) for more detailed info.*** 
+Docs are work in progress.
