@@ -22,6 +22,8 @@ module "network_config" {
 module "cluster" {
   source = "../../../modules/cluster/"
 
+  os_type = "ubuntu-22.04"
+
   controller_config = {
     controler-1 = {
       location    = "fsn1"

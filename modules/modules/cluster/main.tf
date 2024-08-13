@@ -10,6 +10,7 @@ module "controller" {
   hcloud_ssh_key_id = [module.ssh_key.hcloud_ssh_key_id]
   use_network       = var.use_network
   depends_on        = [module.ssh_key]
+  os_type           = var.os_type
 }
 
 module "workers" {
@@ -18,5 +19,6 @@ module "workers" {
   hcloud_ssh_key_id = [module.ssh_key.hcloud_ssh_key_id]
   use_network       = var.use_network
   depends_on        = [module.ssh_key]
+  os_type           = var.os_type
 }
 

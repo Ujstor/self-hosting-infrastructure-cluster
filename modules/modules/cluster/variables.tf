@@ -41,3 +41,9 @@ variable "use_network" {
   type        = bool
   default     = true
 }
+
+variable "os_type" {
+  description = "OS image to use for the server"
+  type        = string
+  default     = "debian-12"
+}
