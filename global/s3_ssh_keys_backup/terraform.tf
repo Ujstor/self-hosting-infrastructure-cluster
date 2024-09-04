@@ -12,6 +12,7 @@ terraform {
       version = "~> 5.50"
     }
   }
+  required_version = ">= 1.0.0, < 2.0.0"
 }
 
 provider "aws" {
