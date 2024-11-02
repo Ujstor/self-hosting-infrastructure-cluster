@@ -30,6 +30,16 @@ theme:
 nav:
   - Home: index.md
   - Quick Start: quick_start.md
+  - Terrafrom modules:
+    - Server: tf_modules/server.md
+    - SSH Key: tf_modules/ssh_key.md
+    - VPC and Subnet: tf_modules/vpc_subnet.md
+    - Firewall: tf_modules/firewall.md
+    - Volumes: tf_modules/volumes.md
+    - Cluster: tf_modules/cluster.md
+  - Terminal Output:
+    - Terrafrom: output/terraform.md
+    - Ansible: output/ansible.md
 extra:
     generator: false
 

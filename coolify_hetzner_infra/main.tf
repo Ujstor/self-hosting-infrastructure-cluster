@@ -42,7 +42,7 @@ module "cluster" {
       subnet_ip    = "10.0.2.3"
     }
   }
-
+  # Aditional firewall rules except the default ones (22, 80, 443)
   firewall_config = {
     ui = {
       labels = {
@@ -64,7 +64,7 @@ module "cluster" {
         },
       ]
     }
-    websoc-term= {
+    websoc-term = {
       labels = {
         type = "websocket-terminal"
       }
@@ -118,7 +118,7 @@ module "cloudflare_record" {
       ttl     = 1
       proxied = true
     }
-    app-bar= {
+    app-bar = {
       zone_id = var.cloudflare_zone_id
       name    = "app-bar"
       content = module.cluster.server_status.worker-1.ip
@@ -134,18 +134,18 @@ module "volumes" {
 
   volume_config = {
     volume-1 = {
-      size     = 100
-      location = module.cluster.server_status.worker-1.location
+      size      = 100
+      location  = module.cluster.server_status.worker-1.location
       server_id = module.cluster.server_status.worker-1.id
     }
     volume-2 = {
-      size     = 100
-      location = module.cluster.server_status.worker-2.location
+      size      = 100
+      location  = module.cluster.server_status.worker-2.location
       server_id = module.cluster.server_status.worker-2.id
     }
     volume-3 = {
-      size     = 100
-      location = module.cluster.server_status.worker-3.location
+      size      = 100
+      location  = module.cluster.server_status.worker-3.location
       server_id = module.cluster.server_status.worker-3.id
     }
   }

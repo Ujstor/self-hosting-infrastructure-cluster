@@ -6,7 +6,7 @@ Create new project in Hetzner [console](https://console.hetzner.cloud/projects)
 
 Choose how many servers you want to have in your cluster, the network topology, the types of servers, domains etc... 
 
-Example configurations are in the /modules/examples folder, and more detailed usage instructions are in the documentation
+Example configurations are in the [/modules/examples dir](https://github.com/Ujstor/terraform-hetzner-modules/tree/master/examples), and more detailed usage instructions are in the documentation
 
 ## 3. Initialize and Apply Terraform
 
@@ -67,7 +67,7 @@ Terraform creates SSH private and public keys that are added to Hetzner and serv
 If needed, you can ssh into the server with the following command:
 
 ```shell
-ssh root@<server-ip> -i ~/.ssh/self_hosted_hetzner_key.pem
+ssh root@<server-ip> -i .ssh.coolify_cluster_prod_key
 ```
 
 ## 7. Destroy infrastructure
