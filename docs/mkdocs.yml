@@ -1,8 +1,7 @@
 ### Site metadata ###
 
-site_name: K8s Infra
+site_name: Self Hosting Infrastructure Cluster
 site_description: Docs
-# site_url: http:/ujstor.github.io/k8s-infra
 
 repo_url: https://github.com/Ujstor/self-hosting-infrastructure-cluster
 edit_uri: edit/main/docs/docs
