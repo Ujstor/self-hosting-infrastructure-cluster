@@ -42,7 +42,7 @@ Terraform will perform the following actions:
       + zone_id         = "954d9bc1391a15cc29a993894cbf65fb"
     }
 
-  # module.cloudflare_record.cloudflare_record.domain_recorda["cl-ui"] will be created
+  # module.cloudflare_record.cloudflare_record.domain_recorda["controler"] will be created
   + resource "cloudflare_record" "domain_recorda" {
       + allow_overwrite = false
       + content         = (known after apply)
@@ -51,7 +51,7 @@ Terraform will perform the following actions:
       + id              = (known after apply)
       + metadata        = (known after apply)
       + modified_on     = (known after apply)
-      + name            = "uitest"
+      + name            = "controler.coolify"
       + proxiable       = (known after apply)
       + proxied         = false
       + ttl             = 3600
@@ -60,87 +60,76 @@ Terraform will perform the following actions:
       + zone_id         = "954d9bc1391a15cc29a993894cbf65fb"
     }
 
-  # module.firewall.hcloud_firewall.default["ui"] will be created
-  + resource "hcloud_firewall" "default" {
-      + id     = (known after apply)
-      + labels = {
-          + "type" = "coolify-ui"
-        }
-      + name   = "coolify-ui"
-
-      + rule {
-          + destination_ips = [
-              + "0.0.0.0/0",
-            ]
-          + direction       = "out"
-          + port            = "8000"
-          + protocol        = "tcp"
-          + source_ips      = []
-            # (1 unchanged attribute hidden)
-        }
-      + rule {
-          + destination_ips = []
-          + direction       = "in"
-          + port            = "8000"
-          + protocol        = "tcp"
-          + source_ips      = [
-              + "0.0.0.0/0",
-              + "::/0",
-            ]
-            # (1 unchanged attribute hidden)
-        }
+  # module.cloudflare_record.cloudflare_record.domain_recorda["coolify-ui"] will be created
+  + resource "cloudflare_record" "domain_recorda" {
+      + allow_overwrite = false
+      + content         = (known after apply)
+      + created_on      = (known after apply)
+      + hostname        = (known after apply)
+      + id              = (known after apply)
+      + metadata        = (known after apply)
+      + modified_on     = (known after apply)
+      + name            = "coolify-ui"
+      + proxiable       = (known after apply)
+      + proxied         = false
+      + ttl             = 3600
+      + type            = "A"
+      + value           = (known after apply)
+      + zone_id         = "954d9bc1391a15cc29a993894cbf65fb"
     }
 
-  # module.firewall.hcloud_firewall.default["websoc-term"] will be created
-  + resource "hcloud_firewall" "default" {
-      + id     = (known after apply)
-      + labels = {
-          + "type" = "websocket-terminal"
-        }
-      + name   = "websocket-terminal"
+  # module.cloudflare_record.cloudflare_record.domain_recorda["worker-1"] will be created
+  + resource "cloudflare_record" "domain_recorda" {
+      + allow_overwrite = false
+      + content         = (known after apply)
+      + created_on      = (known after apply)
+      + hostname        = (known after apply)
+      + id              = (known after apply)
+      + metadata        = (known after apply)
+      + modified_on     = (known after apply)
+      + name            = "worker-1.coolify"
+      + proxiable       = (known after apply)
+      + proxied         = false
+      + ttl             = 3600
+      + type            = "A"
+      + value           = (known after apply)
+      + zone_id         = "954d9bc1391a15cc29a993894cbf65fb"
+    }
 
-      + rule {
-          + destination_ips = [
-              + "0.0.0.0/0",
-            ]
-          + direction       = "out"
-          + port            = "6001"
-          + protocol        = "tcp"
-          + source_ips      = []
-            # (1 unchanged attribute hidden)
-        }
-      + rule {
-          + destination_ips = [
-              + "0.0.0.0/0",
-            ]
-          + direction       = "out"
-          + port            = "6002"
-          + protocol        = "tcp"
-          + source_ips      = []
-            # (1 unchanged attribute hidden)
-        }
-      + rule {
-          + destination_ips = []
-          + direction       = "in"
-          + port            = "6001"
-          + protocol        = "tcp"
-          + source_ips      = [
-              + "0.0.0.0/0",
-              + "::/0",
-            ]
-            # (1 unchanged attribute hidden)
-        }
-      + rule {
-          + destination_ips = []
-          + direction       = "in"
-          + port            = "6002"
-          + protocol        = "tcp"
-          + source_ips      = [
-              + "0.0.0.0/0",
-              + "::/0",
-            ]
-            # (1 unchanged attribute hidden)
-        }
+  # module.cloudflare_record.cloudflare_record.domain_recorda["worker-2"] will be created
+  + resource "cloudflare_record" "domain_recorda" {
+      + allow_overwrite = false
+      + content         = (known after apply)
+      + created_on      = (known after apply)
+      + hostname        = (known after apply)
+      + id              = (known after apply)
+      + metadata        = (known after apply)
+      + modified_on     = (known after apply)
+      + name            = "worker-2.coolify"
+      + proxiable       = (known after apply)
+      + proxied         = false
+      + ttl             = 3600
+      + type            = "A"
+      + value           = (known after apply)
+      + zone_id         = "954d9bc1391a15cc29a993894cbf65fb"
+    }
+
+  # module.cloudflare_record.cloudflare_record.domain_recorda["worker-3"] will be created
+  + resource "cloudflare_record" "domain_recorda" {
+      + allow_overwrite = false
+      + content         = (known after apply)
+      + created_on      = (known after apply)
+      + hostname        = (known after apply)
+      + id              = (known after apply)
+      + metadata        = (known after apply)
+      + modified_on     = (known after apply)
+      + name            = "worker-3.coolify"
+      + proxiable       = (known after apply)
+      + proxied         = false
+      + ttl             = 3600
+      + type            = "A"
+      + value           = (known after apply)
+      + zone_id         = "954d9bc1391a15cc29a993894cbf65fb"
     }
 
   # module.network_config.hcloud_network.network will be created
@@ -296,6 +285,89 @@ Terraform will perform the following actions:
           + destination_ips = []
           + direction       = "in"
           + port            = "80"
+          + protocol        = "tcp"
+          + source_ips      = [
+              + "0.0.0.0/0",
+              + "::/0",
+            ]
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.cluster.module.firewall.hcloud_firewall.default["ui"] will be created
+  + resource "hcloud_firewall" "default" {
+      + id     = (known after apply)
+      + labels = {
+          + "type" = "coolify-ui"
+        }
+      + name   = "coolify-ui"
+
+      + rule {
+          + destination_ips = [
+              + "0.0.0.0/0",
+            ]
+          + direction       = "out"
+          + port            = "8000"
+          + protocol        = "tcp"
+          + source_ips      = []
+            # (1 unchanged attribute hidden)
+        }
+      + rule {
+          + destination_ips = []
+          + direction       = "in"
+          + port            = "8000"
+          + protocol        = "tcp"
+          + source_ips      = [
+              + "0.0.0.0/0",
+              + "::/0",
+            ]
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.cluster.module.firewall.hcloud_firewall.default["websoc-term"] will be created
+  + resource "hcloud_firewall" "default" {
+      + id     = (known after apply)
+      + labels = {
+          + "type" = "websocket-terminal"
+        }
+      + name   = "websocket-terminal"
+
+      + rule {
+          + destination_ips = [
+              + "0.0.0.0/0",
+            ]
+          + direction       = "out"
+          + port            = "6001"
+          + protocol        = "tcp"
+          + source_ips      = []
+            # (1 unchanged attribute hidden)
+        }
+      + rule {
+          + destination_ips = [
+              + "0.0.0.0/0",
+            ]
+          + direction       = "out"
+          + port            = "6002"
+          + protocol        = "tcp"
+          + source_ips      = []
+            # (1 unchanged attribute hidden)
+        }
+      + rule {
+          + destination_ips = []
+          + direction       = "in"
+          + port            = "6001"
+          + protocol        = "tcp"
+          + source_ips      = [
+              + "0.0.0.0/0",
+              + "::/0",
+            ]
+            # (1 unchanged attribute hidden)
+        }
+      + rule {
+          + destination_ips = []
+          + direction       = "in"
+          + port            = "6002"
           + protocol        = "tcp"
           + source_ips      = [
               + "0.0.0.0/0",
@@ -505,7 +577,7 @@ Terraform will perform the following actions:
       + rsa_bits                      = 4096
     }
 
-Plan: 25 to add, 0 to change, 0 to destroy.
+Plan: 29 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + server_status = {
@@ -543,98 +615,100 @@ Do you want to perform these actions?
 
 module.cluster.module.ssh_key.tls_private_key.ssh_key: Creating...
 module.network_config.hcloud_network.network: Creating...
-module.firewall.hcloud_firewall.default["ui"]: Creating...
-module.firewall.hcloud_firewall.default["websoc-term"]: Creating...
+module.cluster.module.firewall.hcloud_firewall.default["ui"]: Creating...
+module.cluster.module.firewall.hcloud_firewall.default["websoc-term"]: Creating...
 module.cluster.module.firewall.hcloud_firewall.default["default_firewall"]: Creating...
-module.cluster.module.firewall.hcloud_firewall.default["default_firewall"]: Creation complete after 1s [id=1706980]
-module.firewall.hcloud_firewall.default["ui"]: Creation complete after 1s [id=1706979]
-module.network_config.hcloud_network.network: Creation complete after 1s [id=10303477]
-module.network_config.hcloud_network_subnet.deployment_subnet["subnet-2"]: Creating...
-module.network_config.hcloud_network_subnet.deployment_subnet["subnet-1"]: Creating...
-module.cluster.module.ssh_key.tls_private_key.ssh_key: Creation complete after 1s [id=8ae37b717ee8a988cfc6b49d4e70213e5bdb0c4a]
+module.cluster.module.ssh_key.tls_private_key.ssh_key: Creation complete after 3s [id=97f2dedd118b8320d5dc81c71525d49a761ff6d2]
 module.cluster.module.ssh_key.hcloud_ssh_key.default: Creating...
-module.network_config.hcloud_network_subnet.deployment_subnet["subnet-1"]: Creation complete after 0s [id=10303477-10.0.1.0/24]
+module.cluster.module.firewall.hcloud_firewall.default["ui"]: Creation complete after 3s [id=1707755]
 module.cluster.module.ssh_key.hcloud_ssh_key.default: Provisioning with 'local-exec'...
 module.cluster.module.ssh_key.hcloud_ssh_key.default (local-exec): (output suppressed due to sensitive value in config)
-module.cluster.module.ssh_key.hcloud_ssh_key.default: Creation complete after 0s [id=24166562]
-module.network_config.hcloud_network_subnet.deployment_subnet["subnet-2"]: Creation complete after 0s [id=10303477-10.0.2.0/24]
-module.firewall.hcloud_firewall.default["websoc-term"]: Creation complete after 1s [id=1706981]
-module.cluster.module.server.hcloud_server.server["worker-2"]: Creating...
+module.cluster.module.ssh_key.hcloud_ssh_key.default: Creation complete after 0s [id=24181160]
+module.network_config.hcloud_network.network: Creation complete after 3s [id=10305011]
+module.network_config.hcloud_network_subnet.deployment_subnet["subnet-2"]: Creating...
+module.network_config.hcloud_network_subnet.deployment_subnet["subnet-1"]: Creating...
+module.cluster.module.firewall.hcloud_firewall.default["websoc-term"]: Creation complete after 3s [id=1707756]
+module.cluster.module.firewall.hcloud_firewall.default["default_firewall"]: Creation complete after 3s [id=1707757]
+module.network_config.hcloud_network_subnet.deployment_subnet["subnet-2"]: Creation complete after 1s [id=10305011-10.0.2.0/24]
+module.network_config.hcloud_network_subnet.deployment_subnet["subnet-1"]: Creation complete after 2s [id=10305011-10.0.1.0/24]
+module.cluster.module.server.hcloud_server.server["worker-1"]: Creating...
 module.cluster.module.server.hcloud_server.server["controller"]: Creating...
 module.cluster.module.server.hcloud_server.server["worker-3"]: Creating...
-module.cluster.module.server.hcloud_server.server["worker-1"]: Creating...
-module.cluster.module.server.hcloud_server.server["controller"]: Still creating... [10s elapsed]
+module.cluster.module.server.hcloud_server.server["worker-2"]: Creating...
 module.cluster.module.server.hcloud_server.server["worker-2"]: Still creating... [10s elapsed]
+module.cluster.module.server.hcloud_server.server["controller"]: Still creating... [10s elapsed]
 module.cluster.module.server.hcloud_server.server["worker-3"]: Still creating... [10s elapsed]
 module.cluster.module.server.hcloud_server.server["worker-1"]: Still creating... [10s elapsed]
-module.cluster.module.server.hcloud_server.server["worker-3"]: Creation complete after 17s [id=55081157]
-module.cluster.module.server.hcloud_server.server["worker-2"]: Creation complete after 18s [id=55081156]
-module.cluster.module.server.hcloud_server.server["worker-1"]: Still creating... [20s elapsed]
+module.cluster.module.server.hcloud_server.server["worker-1"]: Creation complete after 15s [id=55099163]
+module.cluster.module.server.hcloud_server.server["worker-3"]: Creation complete after 15s [id=55099164]
+module.cluster.module.server.hcloud_server.server["worker-2"]: Creation complete after 16s [id=55099166]
 module.cluster.module.server.hcloud_server.server["controller"]: Still creating... [20s elapsed]
-module.cluster.module.server.hcloud_server.server["controller"]: Creation complete after 25s [id=55081154]
-module.cluster.module.server.hcloud_server.server["worker-1"]: Creation complete after 25s [id=55081155]
+module.cluster.module.server.hcloud_server.server["controller"]: Creation complete after 20s [id=55099165]
 module.cluster.module.server.hcloud_server_network.subnet_controler["worker-1"]: Creating...
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Creating...
 module.cluster.module.server.hcloud_server_network.subnet_controler["controller"]: Creating...
+module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Creating...
 module.cluster.module.server.hcloud_server_network.subnet_controler["worker-3"]: Creating...
 module.volumes.hcloud_volume.vol["volume-3"]: Creating...
 module.volumes.hcloud_volume.vol["volume-1"]: Creating...
 module.volumes.hcloud_volume.vol["volume-2"]: Creating...
-module.cloudflare_record.cloudflare_record.domain_recorda["app-bar"]: Creating...
-module.cloudflare_record.cloudflare_record.domain_recorda["cl-ui"]: Creating...
+module.cloudflare_record.cloudflare_record.domain_recorda["worker-3"]: Creating...
+module.cloudflare_record.cloudflare_record.domain_recorda["coolify-ui"]: Creating...
 module.cloudflare_record.cloudflare_record.domain_recorda["app-foo"]: Creating...
-module.cloudflare_record.cloudflare_record.domain_recorda["app-bar"]: Creation complete after 2s [id=2da74797a6109800ef13d615e33d3ee5]
-module.cloudflare_record.cloudflare_record.domain_recorda["app-foo"]: Creation complete after 2s [id=a7b319fcba23316bfef354a611e6614b]
-module.cloudflare_record.cloudflare_record.domain_recorda["cl-ui"]: Creation complete after 2s [id=8036fb919ccace176f44b11c19ae6704]
-module.volumes.hcloud_volume.vol["volume-2"]: Creation complete after 4s [id=101542879]
-module.volumes.hcloud_volume.vol["volume-1"]: Creation complete after 4s [id=101542878]
-module.volumes.hcloud_volume.vol["volume-3"]: Creation complete after 4s [id=101542880]
+module.cloudflare_record.cloudflare_record.domain_recorda["worker-3"]: Creation complete after 2s [id=cf3ad5410f08bb0d216187fb4b1cb2aa]
+module.cloudflare_record.cloudflare_record.domain_recorda["controler"]: Creating...
+module.cloudflare_record.cloudflare_record.domain_recorda["coolify-ui"]: Creation complete after 2s [id=daaec8358acc37d41be703621e317b63]
+module.cloudflare_record.cloudflare_record.domain_recorda["worker-2"]: Creating...
+module.cloudflare_record.cloudflare_record.domain_recorda["app-foo"]: Creation complete after 3s [id=5c5711fd3f083a32b1d580b25406e96d]
+module.cloudflare_record.cloudflare_record.domain_recorda["worker-1"]: Creating...
+module.cloudflare_record.cloudflare_record.domain_recorda["controler"]: Creation complete after 2s [id=500bffdbe4442b27762fb9ff4137ccb5]
+module.cloudflare_record.cloudflare_record.domain_recorda["app-bar"]: Creating...
+module.cloudflare_record.cloudflare_record.domain_recorda["worker-2"]: Creation complete after 2s [id=397cc4b276e4e90d1ba58b894e498eb0]
+module.cloudflare_record.cloudflare_record.domain_recorda["worker-1"]: Creation complete after 1s [id=9c62ee07972710566d9f13f24383f2e5]
+module.cloudflare_record.cloudflare_record.domain_recorda["app-bar"]: Creation complete after 1s [id=6457ed10ae101654dcec20bcedf22264]
+module.volumes.hcloud_volume.vol["volume-2"]: Creation complete after 7s [id=101545778]
+module.volumes.hcloud_volume.vol["volume-1"]: Creation complete after 7s [id=101545777]
+module.volumes.hcloud_volume.vol["volume-3"]: Creation complete after 7s [id=101545779]
+module.volumes.hcloud_volume_attachment.vol_attachment["volume-2"]: Creating...
 module.volumes.hcloud_volume_attachment.vol_attachment["volume-1"]: Creating...
 module.volumes.hcloud_volume_attachment.vol_attachment["volume-3"]: Creating...
-module.volumes.hcloud_volume_attachment.vol_attachment["volume-2"]: Creating...
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-1"]: Still creating... [10s elapsed]
+module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Creation complete after 9s [id=55099166-10305011]
 module.cluster.module.server.hcloud_server_network.subnet_controler["worker-3"]: Still creating... [10s elapsed]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Still creating... [10s elapsed]
 module.cluster.module.server.hcloud_server_network.subnet_controler["controller"]: Still creating... [10s elapsed]
-module.volumes.hcloud_volume_attachment.vol_attachment["volume-2"]: Creation complete after 9s [id=101542879]
-module.volumes.hcloud_volume_attachment.vol_attachment["volume-1"]: Creation complete after 9s [id=101542878]
-module.volumes.hcloud_volume_attachment.vol_attachment["volume-3"]: Creation complete after 9s [id=101542880]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-1"]: Creation complete after 17s [id=55081155-10303477]
-module.cluster.module.server.hcloud_server_network.subnet_controler["controller"]: Still creating... [20s elapsed]
+module.cluster.module.server.hcloud_server_network.subnet_controler["worker-1"]: Still creating... [10s elapsed]
+module.cluster.module.server.hcloud_server_network.subnet_controler["controller"]: Creation complete after 13s [id=55099165-10305011]
+module.volumes.hcloud_volume_attachment.vol_attachment["volume-1"]: Creation complete after 8s [id=101545777]
+module.volumes.hcloud_volume_attachment.vol_attachment["volume-3"]: Creation complete after 8s [id=101545779]
+module.volumes.hcloud_volume_attachment.vol_attachment["volume-2"]: Creation complete after 8s [id=101545778]
 module.cluster.module.server.hcloud_server_network.subnet_controler["worker-3"]: Still creating... [20s elapsed]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Still creating... [20s elapsed]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Still creating... [30s elapsed]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-3"]: Still creating... [30s elapsed]
-module.cluster.module.server.hcloud_server_network.subnet_controler["controller"]: Still creating... [30s elapsed]
-module.cluster.module.server.hcloud_server_network.subnet_controler["controller"]: Creation complete after 33s [id=55081154-10303477]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-3"]: Creation complete after 33s [id=55081157-10303477]
-module.cluster.module.server.hcloud_server_network.subnet_controler["worker-2"]: Creation complete after 34s [id=55081156-10303477]
+module.cluster.module.server.hcloud_server_network.subnet_controler["worker-1"]: Still creating... [20s elapsed]
+module.cluster.module.server.hcloud_server_network.subnet_controler["worker-1"]: Creation complete after 21s [id=55099163-10305011]
+module.cluster.module.server.hcloud_server_network.subnet_controler["worker-3"]: Creation complete after 21s [id=55099164-10305011]
 
-Apply complete! Resources: 25 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 29 added, 0 changed, 0 destroyed.
 
 Outputs:
 
 server_status = {
   "controller" = {
-    "id" = "55081154"
+    "id" = "55099165"
     "ip" = "23.88.42.69"
     "location" = "fsn1"
     "status" = "running"
   }
   "worker-1" = {
-    "id" = "55081155"
+    "id" = "55099163"
     "ip" = "78.47.239.33"
     "location" = "nbg1"
     "status" = "running"
   }
   "worker-2" = {
-    "id" = "55081156"
+    "id" = "55099166"
     "ip" = "65.21.5.16"
     "location" = "hel1"
     "status" = "running"
   }
   "worker-3" = {
-    "id" = "55081157"
+    "id" = "55099164"
     "ip" = "135.181.41.246"
     "location" = "hel1"
     "status" = "running"

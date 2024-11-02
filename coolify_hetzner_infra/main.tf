@@ -102,9 +102,41 @@ module "cloudflare_record" {
   source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/cloudflare_record?ref=v0.0.3"
 
   cloudflare_record = {
-    cl-ui = {
+    controler = {
       zone_id = var.cloudflare_zone_id
-      name    = "uitest"
+      name    = "controler.coolify"
+      content = module.cluster.server_status.controller.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    worker-1 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "worker-1.coolify"
+      content = module.cluster.server_status.worker-1.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    worker-2 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "worker-2.coolify"
+      content = module.cluster.server_status.worker-2.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    worker-3 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "worker-3.coolify"
+      content = module.cluster.server_status.worker-3.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    coolify-ui = {
+      zone_id = var.cloudflare_zone_id
+      name    = "coolify-ui"
       content = module.cluster.server_status.controller.ip
       type    = "A"
       ttl     = 3600

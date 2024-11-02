@@ -1,8 +1,9 @@
 ---
 - name: Install Coolify on controler host
-  hosts: coolify-controler
+  hosts: controler
   become: true
   become_user: root
+  gather_facts: false
   roles:
     - role: common
   tasks:
@@ -14,8 +15,6 @@
         - 6001
         - 6002
         - 8000
-        - 80
-        - 443
 
     - name: Download Coolify installation script
       ansible.builtin.get_url:
@@ -33,9 +32,10 @@
         var: install_result.stdout_lines
 
 - name: Worker configuration
-  hosts: coolify-worker
+  hosts: worker
   become: true
   become_user: root
+  gather_facts: false
   roles:
     - role: common
 
@@ -46,3 +46,4 @@
         port: "{{ item }}"
       loop:
         - 6001
+        - 6002
