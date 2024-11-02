@@ -6,7 +6,7 @@ Create new project in Hetzner [console](https://console.hetzner.cloud/projects)
 
 Choose how many servers you want to have in your cluster, the network topology, the types of servers, domains etc... 
 
-Example configurations are in the /modules/examples folder, and more detailed usage instructions are in the documentation
+Example configurations are in the [/modules/examples dir](https://github.com/Ujstor/terraform-hetzner-modules/tree/master/examples), and more detailed usage instructions are in the documentation
 
 ## 3. Initialize and Apply Terraform
 
@@ -20,24 +20,61 @@ terraform apply
 
 ## 4. Define hosts and run ansible playbook
 
-In your `inventory/hosts` file, specify the IP addresses of your newly created servers obtained from Terraform output, or alternatively, verify them in the Hetzner Cloud console. 
+In your `inventory/inventory` file, specify the IP addresses of your newly created servers obtained from Terraform output, or alternatively, verify them in the Hetzner Cloud console. 
 Check where you saved the created SSH keys. If the name is changed from the default value inside the Terraform configuration,
 update the ansible/ansible.cfg file accordingly.
 
+### Inventory file
 
 ```shell
-[coolify-controler]
+[controler]
 49.13.73.3
 
-[coolify-worker]
+[worker]
 91.107.208.20
 128.140.0.112
+124.122.5.89
+
+[all:vars]
+public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDt2BB7VbcuFMdk304MmMAV5nxo2WnWQgSYccMqYQUyXTdpkSdzss4bPtcvOn4/r3R9/1rwgc8ZO4wCEdLp4uvpUz5GSXyPs5Ej2IQd7BBLBCqH7lAxoHZ7Hld0/G/QfLnnOHbG4VS/lABNvDxyIdOLbxyEAxMNCCSWrOP8rhVXuzkplXU6vSvMCoOH23CeeaWAVWKy71I+efEvdovzrY9bI05g9jbiOzQ+SAvnYkn/fjJ35AUcIMeSA1pImLPRJYbvIUkB3uy7+dUbe6qnOJVX96R9NAR5YVQxub23bRVmDBnIP59IZkMrM5zrGoe8p2kfXhX7N0etRL5P947yFrNjgQ4eUx5xDNCAFc1+/4xcIuWGb/iQGQNs6ryrmhL1zQM63FGvcqrZHo9EHRy+psMl3LF3uMCylos6c0Q7tZFWUkAuh56GkXw1R6jR07/dzFwkUs2SiTFj7PIC4wqNA3hEYxZAplTDGuccvzdhiuztBpyrJgwjEhhJDTEMFlpVQDclXdhc5JAZ00eG6ETQI7ITmaLPmjcrra6EEnk3hjomnmeUk1XbH8xeujYrsWzOBNkjUnTHSRRa9FrhvFxZUdbQM+id8VRUiDFoYU/Ao4G6CRayWoRTKdghG7LPIGvgjR+FkA7nKSCF9S0NmCv81vNkaA65taBsJD7fHmfoUinPUw=="
+```
+Another way is to define hosts in YAML format and assign DNS records to IPs.
+
+```shell
+servers:
+  children:
+    controler:
+      hosts:
+        controler.coolify.ujstor.com:
+    worker:
+      hosts:
+        worker-1.coolify.ujstor.com:
+        worker-2.coolify.ujstor.com:
+        worker-3.coolify.ujstor.com:
+  vars:
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDt2BB7VbcuFMdk304MmMAV5nxo2WnWQgSYccMqYQUyXTdpkSdzss4bPtcvOn4/r3R9/1rwgc8ZO4wCEdLp4uvpUz5GSXyPs5Ej2IQd7BBLBCqH7lAxoHZ7Hld0/G/QfLnnOHbG4VS/lABNvDxyIdOLbxyEAxMNCCSWrOP8rhVXuzkplXU6vSvMCoOH23CeeaWAVWKy71I+efEvdovzrY9bI05g9jbiOzQ+SAvnYkn/fjJ35AUcIMeSA1pImLPRJYbvIUkB3uy7+dUbe6qnOJVX96R9NAR5YVQxub23bRVmDBnIP59IZkMrM5zrGoe8p2kfXhX7N0etRL5P947yFrNjgQ4eUx5xDNCAFc1+/4xcIuWGb/iQGQNs6ryrmhL1zQM63FGvcqrZHo9EHRy+psMl3LF3uMCylos6c0Q7tZFWUkAuh56GkXw1R6jR07/dzFwkUs2SiTFj7PIC4wqNA3hEYxZAplTDGuccvzdhiuztBpyrJgwjEhhJDTEMFlpVQDclXdhc5JAZ00eG6ETQI7ITmaLPmjcrra6EEnk3hjomnmeUk1XbH8xeujYrsWzOBNkjUnTHSRRa9FrhvFxZUdbQM+id8VRUiDFoYU/Ao4G6CRayWoRTKdghG7LPIGvgjR+FkA7nKSCF9S0NmCv81vNkaA65taBsJD7fHmfoUinPUw=="
+```
+In ansible.cfg, the inventory file to use is defined.
+
+### Run Ansible in docker container
+
+You can also run it locally; in that case, check the inventory and SSH key paths in ansible.cfg
+
+```shell
+cd ansible
+docker build -t ansible-coolify .
+
+docker run -it --rm \
+-v ./inventory/inventory.yml:/config/inventory.yml \
+-v /path/to/.ssh/coolify_cluster_prod_key:/secrets/ssh_key \
+ansible-coolify
 ```
 
 Run playbook:
+
 ```shell
 cd ansible
-ansible-playbook playbooks/playbook_install_coolify.yml 
+ansible-playbook playbooks/playbook_install_coolify.yml
 ```
 Ansible playbook automates the installation of Coolify on controller hosts. It configures common dependencies and enhances system security on both controller and workers hosts:
 
@@ -67,7 +104,7 @@ Terraform creates SSH private and public keys that are added to Hetzner and serv
 If needed, you can ssh into the server with the following command:
 
 ```shell
-ssh root@<server-ip> -i ~/.ssh/self_hosted_hetzner_key.pem
+ssh root@<server-ip> -i /path/to/.ssh/coolify_cluster_prod_key
 ```
 
 ## 7. Destroy infrastructure

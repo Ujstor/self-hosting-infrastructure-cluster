@@ -28,11 +28,11 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
 }
 
 resource "aws_s3_object" "prod_ssh_dir" {
-  for_each = fileset("../../prod/.ssh", "*")
+  for_each = fileset("../../coolify_hetzner_infra/.ssh", "*")
 
   bucket = aws_s3_bucket.ssh_keys_backup.id
   key    = "prod/${each.value}"
   source = "../../prod/.ssh/${each.value}"
-  etag   = filemd5("../../prod/.ssh/${each.value}")
+  etag   = filemd5("../../coolify_hetzner_infra/.ssh/${each.value}")
 }
 

@@ -1,8 +1,7 @@
 ### Site metadata ###
 
-site_name: K8s Infra
+site_name: Self Hosting Infrastructure Cluster
 site_description: Docs
-# site_url: http:/ujstor.github.io/k8s-infra
 
 repo_url: https://github.com/Ujstor/self-hosting-infrastructure-cluster
 edit_uri: edit/main/docs/docs
@@ -31,6 +30,16 @@ theme:
 nav:
   - Home: index.md
   - Quick Start: quick_start.md
+  - Terrafrom modules:
+    - Server: tf_modules/server.md
+    - SSH Key: tf_modules/ssh_key.md
+    - VPC and Subnet: tf_modules/vpc_subnet.md
+    - Firewall: tf_modules/firewall.md
+    - Volumes: tf_modules/volumes.md
+    - Cluster: tf_modules/cluster.md
+  - Terminal Output:
+    - Terrafrom: output/terraform.md
+    - Ansible: output/ansible.md
 extra:
     generator: false
 

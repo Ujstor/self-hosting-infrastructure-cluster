@@ -3,3 +3,5 @@ skip_list:
   - yaml[indentation]
   - yaml[new-line-at-end-of-file]
   - yaml[brackets]
+  - var-naming[no-role-prefix]
+  - yaml[line-length]
