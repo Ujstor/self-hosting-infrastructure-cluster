@@ -1,6 +1,6 @@
 ---
-- name: Install Coolify on controler host
-  hosts: controler
+- name: Install Coolify on controller host
+  hosts: controller
   become: true
   become_user: root
   gather_facts: false

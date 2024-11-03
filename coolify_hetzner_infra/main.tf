@@ -102,9 +102,9 @@ module "cloudflare_record" {
   source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/cloudflare_record?ref=v0.0.3"
 
   cloudflare_record = {
-    controler = {
+    controller = {
       zone_id = var.cloudflare_zone_id
-      name    = "controler.coolify"
+      name    = "controller.coolify"
       content = module.cluster.server_status.controller.ip
       type    = "A"
       ttl     = 3600

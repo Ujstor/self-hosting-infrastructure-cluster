@@ -1,8 +1,8 @@
 servers:
   children:
-    controler:
+    controller:
       hosts:
-        controler.coolify.ujstor.com:
+        controller.coolify.ujstor.com:
     worker:
       hosts:
         worker-1.coolify.ujstor.com:
