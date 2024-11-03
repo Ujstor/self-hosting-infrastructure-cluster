@@ -20,7 +20,7 @@
       - fail2ban
     state: present
 
-- name: Allow everything and enable UFW
+- name: Enable UFW
   community.general.ufw:
     state: enabled
     policy: allow

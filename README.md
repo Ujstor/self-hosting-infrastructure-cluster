@@ -22,4 +22,4 @@ Terraform modules have been moved to separate ***[repository](https://github.com
 
 Old code is available in the [old_config branch](https://github.com/Ujstor/self-hosting-infrastructure-cluster/tree/old_config)
 
-***Check [docs](ujstor.github.io/self-hosting-infrastructure-cluster) for more detailed info.*** 
+***Check [docs](https://ujstor.github.io/self-hosting-infrastructure-cluster) for more detailed info.*** 

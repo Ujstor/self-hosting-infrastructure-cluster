@@ -64,7 +64,7 @@ module "cluster" {
         },
       ]
     }
-    websoc-term = {
+    websocet-terminal = {
       labels = {
         type = "websocket-terminal"
       }
@@ -153,7 +153,7 @@ module "cloudflare_record" {
     app-bar = {
       zone_id = var.cloudflare_zone_id
       name    = "app-bar"
-      content = module.cluster.server_status.worker-1.ip
+      content = module.cluster.server_status.worker-2.ip
       type    = "A"
       ttl     = 1
       proxied = true

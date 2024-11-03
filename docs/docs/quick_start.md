@@ -1,16 +1,16 @@
 ## 1. Generate Hetzner API Token
 
-Create new project in Hetzner [console](https://console.hetzner.cloud/projects)
+Create a new project in the Hetzner [console](https://console.hetzner.cloud/projects) to obtain an API token.
 
-## 2. Configure infrastructure
+## 2. Configure Infrastructure
 
-Choose how many servers you want to have in your cluster, the network topology, the types of servers, domains etc... 
+Determine the specifications of your cluster, such as the number of servers, network topology, server types, and domains.
 
-Example configurations are in the [/modules/examples dir](https://github.com/Ujstor/terraform-hetzner-modules/tree/master/examples), and more detailed usage instructions are in the documentation
+You can find example configurations in the [/modules/examples directory](https://github.com/Ujstor/terraform-hetzner-modules/tree/master/examples), and additional usage instructions are provided in the documentation.
 
 ## 3. Initialize and Apply Terraform
 
-Initialize Terraform and apply the configuration:
+Initialize and apply the Terraform configuration:
 
 ```shell
 terraform init --upgrade
@@ -18,98 +18,85 @@ terraform validate
 terraform apply
 ```
 
-## 4. Define hosts and run ansible playbook
+## 4. Define Hosts and Run Ansible Playbook
 
-In your `inventory/inventory` file, specify the IP addresses of your newly created servers obtained from Terraform output, or alternatively, verify them in the Hetzner Cloud console. 
-Check where you saved the created SSH keys. If the name is changed from the default value inside the Terraform configuration,
-update the ansible/ansible.cfg file accordingly.
+In the `inventory/inventory.yml` file, specify the IP addresses or DNS of the servers you created. You can find these in the Terraform output or verify them in the Hetzner Cloud console.
 
-### Inventory file
+Ensure that you know the location of the SSH keys you created. If the key names differ from the default values in the Terraform configuration, update the paths in `ansible/ansible.cfg` as needed.
 
-```shell
-[controler]
-49.13.73.3
+### Inventory File Example
 
-[worker]
-91.107.208.20
-128.140.0.112
-124.122.5.89
-
-[all:vars]
-public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDt2BB7VbcuFMdk304MmMAV5nxo2WnWQgSYccMqYQUyXTdpkSdzss4bPtcvOn4/r3R9/1rwgc8ZO4wCEdLp4uvpUz5GSXyPs5Ej2IQd7BBLBCqH7lAxoHZ7Hld0/G/QfLnnOHbG4VS/lABNvDxyIdOLbxyEAxMNCCSWrOP8rhVXuzkplXU6vSvMCoOH23CeeaWAVWKy71I+efEvdovzrY9bI05g9jbiOzQ+SAvnYkn/fjJ35AUcIMeSA1pImLPRJYbvIUkB3uy7+dUbe6qnOJVX96R9NAR5YVQxub23bRVmDBnIP59IZkMrM5zrGoe8p2kfXhX7N0etRL5P947yFrNjgQ4eUx5xDNCAFc1+/4xcIuWGb/iQGQNs6ryrmhL1zQM63FGvcqrZHo9EHRy+psMl3LF3uMCylos6c0Q7tZFWUkAuh56GkXw1R6jR07/dzFwkUs2SiTFj7PIC4wqNA3hEYxZAplTDGuccvzdhiuztBpyrJgwjEhhJDTEMFlpVQDclXdhc5JAZ00eG6ETQI7ITmaLPmjcrra6EEnk3hjomnmeUk1XbH8xeujYrsWzOBNkjUnTHSRRa9FrhvFxZUdbQM+id8VRUiDFoYU/Ao4G6CRayWoRTKdghG7LPIGvgjR+FkA7nKSCF9S0NmCv81vNkaA65taBsJD7fHmfoUinPUw=="
-```
-Another way is to define hosts in YAML format and assign DNS records to IPs.
-
-```shell
+```yaml
 servers:
   children:
-    controler:
+    controller:
       hosts:
-        controler.coolify.ujstor.com:
+        controller.coolify.ujstor.com:
     worker:
       hosts:
         worker-1.coolify.ujstor.com:
         worker-2.coolify.ujstor.com:
         worker-3.coolify.ujstor.com:
-  vars:
-    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDt2BB7VbcuFMdk304MmMAV5nxo2WnWQgSYccMqYQUyXTdpkSdzss4bPtcvOn4/r3R9/1rwgc8ZO4wCEdLp4uvpUz5GSXyPs5Ej2IQd7BBLBCqH7lAxoHZ7Hld0/G/QfLnnOHbG4VS/lABNvDxyIdOLbxyEAxMNCCSWrOP8rhVXuzkplXU6vSvMCoOH23CeeaWAVWKy71I+efEvdovzrY9bI05g9jbiOzQ+SAvnYkn/fjJ35AUcIMeSA1pImLPRJYbvIUkB3uy7+dUbe6qnOJVX96R9NAR5YVQxub23bRVmDBnIP59IZkMrM5zrGoe8p2kfXhX7N0etRL5P947yFrNjgQ4eUx5xDNCAFc1+/4xcIuWGb/iQGQNs6ryrmhL1zQM63FGvcqrZHo9EHRy+psMl3LF3uMCylos6c0Q7tZFWUkAuh56GkXw1R6jR07/dzFwkUs2SiTFj7PIC4wqNA3hEYxZAplTDGuccvzdhiuztBpyrJgwjEhhJDTEMFlpVQDclXdhc5JAZ00eG6ETQI7ITmaLPmjcrra6EEnk3hjomnmeUk1XbH8xeujYrsWzOBNkjUnTHSRRa9FrhvFxZUdbQM+id8VRUiDFoYU/Ao4G6CRayWoRTKdghG7LPIGvgjR+FkA7nKSCF9S0NmCv81vNkaA65taBsJD7fHmfoUinPUw=="
 ```
-In ansible.cfg, the inventory file to use is defined.
 
-### Run Ansible in docker container
+### Run Ansible in a Docker Container
 
-You can also run it locally; in that case, check the inventory and SSH key paths in ansible.cfg
+You can run Ansible in a Docker container or locally. If ansible running locally, check the inventory and SSH key paths in `ansible.cfg`.
 
 ```shell
 cd ansible
 docker build -t ansible-coolify .
 
 docker run -it --rm \
--v ./inventory/inventory.yml:/config/inventory.yml \
--v /path/to/.ssh/coolify_cluster_prod_key:/secrets/ssh_key \
-ansible-coolify
+  -v ./inventory/inventory.yml:/config/inventory.yml \
+  -v /path/to/.ssh/coolify_cluster_prod_key:/secrets/ssh_key \
+  -v /path/to/.ssh/coolify_cluster_prod_key.pub:/secrets/ssh_key.pub \
+  ansible-coolify
 ```
 
-Run playbook:
+You can also use a prebuilt image from the GitHub Actions pipeline, such as `ansible-coolify-deploy:0.0.1`.
+
+### Run the Ansible Playbook
+
+To deploy Coolify, run the Ansible playbook:
 
 ```shell
-cd ansible
 ansible-playbook playbooks/playbook_install_coolify.yml
 ```
-Ansible playbook automates the installation of Coolify on controller hosts. It configures common dependencies and enhances system security on both controller and workers hosts:
 
-- Updates package lists and upgrades all packages to ensure the system is up to date.
-- Installs necessary dependencies including UFW and Fail2Ban for enhancing system security.
-- Sets up UFW to allow specific incoming traffic and enables it for added security.
-- Configures Fail2Ban to prevent unauthorized access attempts by banning malicious IP addresses.
-- Implements SSH hardening measures to secure remote access to the system.
-- Installs Coolify on controller hosts and configures it to listen on specific ports.
-- Configures worker hosts to allow incoming traffic on specified ports required for Coolify operation
+The Ansible playbook automates the installation of Coolify on the controller hosts. It also configures key dependencies and strengthens system security across both the controller and worker hosts by performing the following actions:
 
+- Updates and upgrades all packages.
+- Installs necessary dependencies, including UFW and Fail2Ban, for enhanced system security.
+- Sets up UFW to allow specific incoming traffic, and enables it.
+- Configures Fail2Ban to block unauthorized access attempts.
+- Implements SSH hardening measures for secure remote access.
+- Installs and configures Coolify on controller hosts to listen on specified ports.
+- Sets up worker hosts to allow incoming traffic on the ports required for Coolify.
 
-## 5. Open UI:
+## 5. Open the Coolify UI
 
-When Ansible finishes, Coolify's UI will be available at: 
+After Ansible completes, you can access Coolify's UI at:
 
 ```shell
-CONTROLER_SERVER_IP:8000
+CONTROLLER_SERVER_IP:8000
 ```
 
-Now is the time to configure Coolify. Add your private key that Terraform created, use workers private IPs and add the workers to your cluster. Consult the [documentation](https://coolify.io/docs/) for futher steps. 
+Follow the prompts to configure Coolify. Use the private key created by Terraform, enter the private IPs of your worker nodes, and add them to your cluster. Refer to the [Coolify documentation](https://coolify.io/docs/) for further steps.
 
-## 6. SSH into server
+## 6. SSH into the Server
 
-Terraform creates SSH private and public keys that are added to Hetzner and servers. They are also used by Ansible. Be careful with keys, you don't want to lose them.
+Terraform generates the SSH keys, which are added to Hetzner and the servers, and are also used by Ansible. Keep these keys secure, as losing them could prevent access to the servers.
 
-If needed, you can ssh into the server with the following command:
+To SSH into a server, use the following command:
 
 ```shell
 ssh root@<server-ip> -i /path/to/.ssh/coolify_cluster_prod_key
 ```
 
-## 7. Destroy infrastructure
+## 7. Destroy Infrastructure
 
-To destroy the infrastructure run the following command:
+To delete the infrastructure, run the following command:
 
 ```shell
 terraform destroy

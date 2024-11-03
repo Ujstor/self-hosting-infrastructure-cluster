@@ -1,0 +1,1 @@
+public_key: "{{ lookup('file', '/secrets/ssh_key.pub') }}"
