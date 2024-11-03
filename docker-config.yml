@@ -2,4 +2,4 @@ docker:
   DOCKER_HUB_USERNAME: ujstor
   DOCKER_REPO_NAME: ansible-coolify-deploy
   VERSION_PART: Patch # Patch, Minor, major
-  PUSH_TO_DOCKER: true
+  PUSH_TO_DOCKER: false
