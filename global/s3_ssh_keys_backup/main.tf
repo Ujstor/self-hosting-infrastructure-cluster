@@ -32,7 +32,7 @@ resource "aws_s3_object" "prod_ssh_dir" {
 
   bucket = aws_s3_bucket.ssh_keys_backup.id
   key    = "prod/${each.value}"
-  source = "../../prod/.ssh/${each.value}"
+  source = "../../coolify_hetzner_infra/.ssh/${each.value}"
   etag   = filemd5("../../coolify_hetzner_infra/.ssh/${each.value}")
 }
 

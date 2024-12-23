@@ -8,7 +8,7 @@ Infra for utilizing Hetzner low-cost VPS and Docker containers, wrapped in [Cool
 
 Before you begin, ensure you have the following:
 
-- [Hetzner Cloud account](https://hetzner.cloud/?ref=Ix9xCKNxJriM)
+- [Hetzner Cloud account](https://hetzner.cloud/?ref=Ix9xCKNxJriM) (20$ free credits)
 - [Terraform](https://www.terraform.io/downloads.html)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
